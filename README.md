@@ -2,6 +2,9 @@
 
 A simple web application that helps students track their coding practice in one place.
 
+## Architecture Decisions
+
+The major technical decisions, alternatives considered, reasoning, and trade-offs are documented in [DECISIONS.md](DECISIONS.md).
 ## Problem
 
 While practicing coding problems on platforms like LeetCode and GeeksforGeeks, it can be difficult to remember which problems are completed, in progress, or still need to be solved.
