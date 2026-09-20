@@ -20,6 +20,8 @@ button {
   min-height: 100vh;
 }
 
+/* Header */
+
 .header {
   background: #ffffff;
   padding: 24px 40px;
@@ -34,11 +36,15 @@ button {
   color: #6b7280;
 }
 
+/* Main */
+
 .main-content {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 24px;
 }
+
+/* Dashboard */
 
 .dashboard h2,
 .problems-section h2 {
@@ -70,6 +76,8 @@ button {
   font-weight: bold;
 }
 
+/* Section Header */
+
 .section-header {
   display: flex;
   justify-content: space-between;
@@ -80,10 +88,54 @@ button {
 .section-header button,
 .empty-state button {
   background: #2563eb;
-  color: white;
+  color: #ffffff;
   padding: 10px 18px;
   border-radius: 8px;
 }
+
+.section-header button:hover,
+.empty-state button:hover {
+  background: #1d4ed8;
+}
+
+/* Filters */
+
+.filters {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr auto;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.filters input,
+.filters select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #ffffff;
+}
+
+.filters input:focus,
+.filters select:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 1px;
+}
+
+.filters button {
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #e5e7eb;
+  color: #1f2937;
+  white-space: nowrap;
+}
+
+.filters button:hover {
+  background: #d1d5db;
+}
+
+/* Empty State */
 
 .empty-state {
   background: #ffffff;
@@ -102,31 +154,72 @@ button {
   margin-bottom: 20px;
 }
 
-@media (max-width: 768px) {
-  .header {
-    padding: 20px;
-  }
+/* Problem List */
 
-  .main-content {
-    padding: 24px 16px;
-  }
-
-  .stats {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.problem-list {
+  display: grid;
+  gap: 16px;
 }
 
-@media (max-width: 480px) {
-  .stats {
-    grid-template-columns: 1fr;
-  }
-
-  .section-header {
-    align-items: flex-start;
-    gap: 12px;
-    flex-direction: column;
-  }
+.problem-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
 }
+
+.problem-card h3 {
+  margin-bottom: 8px;
+}
+
+.problem-card p {
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.problem-card label {
+  display: block;
+  margin: 12px 0;
+  font-weight: 600;
+}
+
+.problem-card label select {
+  margin-left: 8px;
+  padding: 6px 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+}
+
+.problem-card a {
+  display: inline-block;
+  margin-top: 8px;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.problem-card a:hover {
+  text-decoration: underline;
+}
+
+/* Problem Actions */
+
+.problem-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.problem-actions button {
+  padding: 8px 14px;
+  border-radius: 7px;
+  background: #e5e7eb;
+}
+
+.problem-actions button:hover {
+  background: #d1d5db;
+}
+
+/* Form */
 
 .form-container {
   background: #ffffff;
@@ -166,6 +259,7 @@ button {
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 15px;
+  background: #ffffff;
 }
 
 .form-group input:focus,
@@ -192,37 +286,101 @@ button {
 
 .form-actions button:last-child {
   background: #2563eb;
-  color: white;
+  color: #ffffff;
 }
 
-.problem-list {
-  display: grid;
-  gap: 16px;
+.form-actions button:last-child:hover {
+  background: #1d4ed8;
 }
 
-.problem-card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 20px;
+/* Form Error */
+
+.form-error {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  color: #991b1b;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 18px;
 }
 
-.problem-card h3 {
-  margin-bottom: 8px;
+/* Tablet */
+
+@media (max-width: 900px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .filters {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.problem-card p {
-  color: #6b7280;
-  margin-bottom: 6px;
-}
+/* Mobile */
 
-.problem-card a {
-  display: inline-block;
-  margin-top: 8px;
-  color: #2563eb;
-  text-decoration: none;
-}
+@media (max-width: 480px) {
+  .header {
+    padding: 20px;
+  }
 
-.problem-card a:hover {
-  text-decoration: underline;
+  .header h1 {
+    font-size: 24px;
+  }
+
+  .main-content {
+    padding: 24px 16px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 20px;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .section-header button {
+    width: 100%;
+  }
+
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .filters button {
+    width: 100%;
+  }
+
+  .problem-card label select {
+    display: block;
+    margin: 8px 0 0;
+    width: 100%;
+  }
+
+  .problem-actions {
+    flex-direction: column;
+  }
+
+  .problem-actions button {
+    width: 100%;
+  }
+
+  .form-container {
+    padding: 20px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
 }

@@ -1,6 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-function ProblemForm({ onClose, onAddProblem }) {
+function ProblemForm({
+  onClose,
+  onAddProblem,
+  onUpdateProblem,
+  editingProblem,
+}) {
   const [formData, setFormData] = useState({
     name: '',
     link: '',
@@ -10,6 +15,32 @@ function ProblemForm({ onClose, onAddProblem }) {
     status: 'Not Started',
   });
 
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    if (editingProblem) {
+      setFormData({
+        name: editingProblem.name,
+        link: editingProblem.link,
+        platform: editingProblem.platform,
+        topic: editingProblem.topic,
+        difficulty: editingProblem.difficulty,
+        status: editingProblem.status,
+      });
+    } else {
+      setFormData({
+        name: '',
+        link: '',
+        platform: '',
+        topic: '',
+        difficulty: '',
+        status: 'Not Started',
+      });
+    }
+
+    setError('');
+  }, [editingProblem]);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -17,36 +48,77 @@ function ProblemForm({ onClose, onAddProblem }) {
       ...previousData,
       [name]: value,
     }));
+
+    setError('');
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Form submitted:', formData);
-    onAddProblem(formData);
 
-    setFormData({
-      name: '',
-      link: '',
-      platform: '',
-      topic: '',
-      difficulty: '',
-      status: 'Not Started',
-    });
+    const trimmedName = formData.name.trim();
+    const trimmedTopic = formData.topic.trim();
+    const trimmedLink = formData.link.trim();
+
+    if (!trimmedName) {
+      setError('Please enter a problem name.');
+      return;
+    }
+
+    if (!trimmedTopic) {
+      setError('Please enter a topic.');
+      return;
+    }
+
+    if (trimmedLink) {
+      try {
+        new URL(trimmedLink);
+      } catch {
+        setError('Please enter a valid problem link.');
+        return;
+      }
+    }
+
+    const cleanedProblem = {
+      ...formData,
+      name: trimmedName,
+      topic: trimmedTopic,
+      link: trimmedLink,
+    };
+
+    if (editingProblem) {
+      onUpdateProblem({
+        ...cleanedProblem,
+        id: editingProblem.id,
+      });
+    } else {
+      onAddProblem(cleanedProblem);
+    }
   };
 
   return (
     <div className="form-container">
       <div className="form-header">
-        <h2>Add Coding Problem</h2>
+        <h2>
+          {editingProblem
+            ? 'Edit Coding Problem'
+            : 'Add Coding Problem'}
+        </h2>
 
         <button type="button" onClick={onClose}>
           Close
         </button>
       </div>
 
+      {error && (
+        <div className="form-error" role="alert">
+          {error}
+        </div>
+      )}
+
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="problem-name">Problem Name</label>
+
           <input
             id="problem-name"
             name="name"
@@ -60,6 +132,7 @@ function ProblemForm({ onClose, onAddProblem }) {
 
         <div className="form-group">
           <label htmlFor="problem-link">Problem Link</label>
+
           <input
             id="problem-link"
             name="link"
@@ -72,6 +145,7 @@ function ProblemForm({ onClose, onAddProblem }) {
 
         <div className="form-group">
           <label htmlFor="platform">Platform</label>
+
           <select
             id="platform"
             name="platform"
@@ -81,7 +155,9 @@ function ProblemForm({ onClose, onAddProblem }) {
           >
             <option value="">Select platform</option>
             <option value="LeetCode">LeetCode</option>
-            <option value="GeeksforGeeks">GeeksforGeeks</option>
+            <option value="GeeksforGeeks">
+              GeeksforGeeks
+            </option>
             <option value="HackerRank">HackerRank</option>
             <option value="CodeChef">CodeChef</option>
             <option value="Other">Other</option>
@@ -90,6 +166,7 @@ function ProblemForm({ onClose, onAddProblem }) {
 
         <div className="form-group">
           <label htmlFor="topic">Topic</label>
+
           <input
             id="topic"
             name="topic"
@@ -103,6 +180,7 @@ function ProblemForm({ onClose, onAddProblem }) {
 
         <div className="form-group">
           <label htmlFor="difficulty">Difficulty</label>
+
           <select
             id="difficulty"
             name="difficulty"
@@ -119,6 +197,7 @@ function ProblemForm({ onClose, onAddProblem }) {
 
         <div className="form-group">
           <label htmlFor="status">Status</label>
+
           <select
             id="status"
             name="status"
@@ -137,7 +216,7 @@ function ProblemForm({ onClose, onAddProblem }) {
           </button>
 
           <button type="submit">
-            Add Problem
+            {editingProblem ? 'Save Changes' : 'Add Problem'}
           </button>
         </div>
       </form>

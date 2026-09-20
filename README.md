@@ -1,16 +1,123 @@
-# React + Vite
+# Coding Practice Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple web application that helps students track their coding practice in one place.
 
-Currently, two official plugins are available:
+## Problem
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+While practicing coding problems on platforms like LeetCode and GeeksforGeeks, it can be difficult to remember which problems are completed, in progress, or still need to be solved.
 
-## React Compiler
+This project was built to solve that problem by providing a simple personal coding practice tracker.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+* Add coding problems
+* Store problem name, link, platform, topic, difficulty, and status
+* View total number of problems
+* Track solved, in-progress, and not-started problems
+* Edit existing problems
+* Delete problems
+* Change problem status
+* Search problems by name
+* Filter by platform
+* Filter by difficulty
+* Filter by status
+* Filter by topic
+* Save data using browser LocalStorage
+* Form validation
+* Empty and no-result states
+* Responsive design for desktop and mobile
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Technologies Used
+
+* React
+* Vite
+* JavaScript
+* CSS
+* LocalStorage
+* Git
+* GitHub
+
+## How to Run Locally
+
+### 1. Clone the repository
+
+```bash
+git clone YOUR_GITHUB_REPOSITORY_URL
+```
+
+### 2. Open the project folder
+
+```bash
+cd coding-practice-tracker
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Start the development server
+
+```bash
+npm run dev
+```
+
+### 5. Open the application
+
+Open the local URL shown in the terminal, usually:
+
+```text
+http://localhost:5173
+```
+
+## How to Use
+
+1. Click **Add Problem**.
+2. Enter the coding problem details.
+3. Select the platform, difficulty, and status.
+4. Click **Add Problem**.
+5. Use the dashboard to track your progress.
+6. Use search and filters to find problems.
+7. Use **Edit** to update a problem.
+8. Use **Delete** to remove a problem.
+9. Change the status directly from the problem card.
+
+## Data Storage
+
+The application uses browser LocalStorage to save coding problems.
+
+No backend or external database is required.
+
+## Deliberately Not Implemented
+
+To keep the project small and focused, these features were intentionally not implemented:
+
+* User authentication
+* Backend server
+* External database
+* Automatic problem importing
+* LeetCode or GeeksforGeeks API integration
+* Social features
+* Leaderboards
+* User profiles
+* Cloud synchronization
+* Sharing problem lists with other users
+
+These features were left out intentionally so the project could remain focused on the core problem of tracking personal coding practice.
+
+## Future Improvements
+
+Possible future improvements include:
+
+* User authentication
+* Cloud database
+* Progress charts
+* Streak tracking
+* Automatic problem import
+* Personalized statistics
+* Cloud synchronization across devices
+
+## Project Status
+
+Completed as a frontend project using React and LocalStorage.
