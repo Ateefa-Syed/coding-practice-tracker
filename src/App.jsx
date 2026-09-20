@@ -295,6 +295,11 @@ function App() {
                 </button>
               </div>
             ) : (
+               <>
+                 <p className="problem-count">
+  {filteredProblems.length} problem
+  {filteredProblems.length !== 1 ? "s" : ""} found
+</p>
               <div className="problem-list">
                 {filteredProblems.map((problem) => (
                   <div
@@ -362,14 +367,16 @@ function App() {
                       </button>
                     </div>
                   </div>
+                
                 ))}
               </div>
+              </>
             )}
           </section>
         )}
       </main>
     </div>
-  );
+  )
 }
 
 export default App;
