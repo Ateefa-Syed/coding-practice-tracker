@@ -1,4 +1,9 @@
+import { useState } from 'react';
+import ProblemForm from './components/ProblemForm';
+
 function App() {
+  const [showForm, setShowForm] = useState(false);
+
   return (
     <div className="app">
       <header className="header">
@@ -33,18 +38,30 @@ function App() {
           </div>
         </section>
 
-        <section className="problems-section">
-          <div className="section-header">
-            <h2>My Problems</h2>
-            <button>Add Problem</button>
-          </div>
+        {showForm ? (
+          <ProblemForm onClose={() => setShowForm(false)} />
+        ) : (
+          <section className="problems-section">
+            <div className="section-header">
+              <h2>My Problems</h2>
 
-          <div className="empty-state">
-            <h3>No coding problems yet</h3>
-            <p>Add your first problem to start tracking your practice.</p>
-            <button>Add Your First Problem</button>
-          </div>
-        </section>
+              <button onClick={() => setShowForm(true)}>
+                Add Problem
+              </button>
+            </div>
+
+            <div className="empty-state">
+              <h3>No coding problems yet</h3>
+              <p>
+                Add your first problem to start tracking your practice.
+              </p>
+
+              <button onClick={() => setShowForm(true)}>
+                Add Your First Problem
+              </button>
+            </div>
+          </section>
+        )}
       </main>
     </div>
   );
