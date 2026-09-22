@@ -59,15 +59,20 @@ function ProblemForm({
     const trimmedTopic = formData.topic.trim();
     const trimmedLink = formData.link.trim();
 
-    if (!trimmedName) {
-      setError('Please enter a problem name.');
-      return;
-    }
+    if (!trimmedName && !trimmedTopic) {
+  setError('Please enter a problem name and topic.');
+  return;
+}
 
-    if (!trimmedTopic) {
-      setError('Please enter a topic.');
-      return;
-    }
+if (!trimmedName) {
+  setError('Please enter a problem name.');
+  return;
+}
+
+if (!trimmedTopic) {
+  setError('Please enter a topic.');
+  return;
+}
 
     if (trimmedLink) {
       try {
@@ -120,14 +125,19 @@ function ProblemForm({
           <label htmlFor="problem-name">Problem Name</label>
 
           <input
-            id="problem-name"
-            name="name"
-            type="text"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Enter problem name"
-            required
-          />
+  id="problem-name"
+  name="name"
+  type="text"
+  value={formData.name}
+  onChange={handleChange}
+  placeholder="Enter problem name"
+  maxLength={100}
+  required
+/>
+
+<small>
+  {formData.name.length} / 100 characters
+</small>
         </div>
 
         <div className="form-group">
