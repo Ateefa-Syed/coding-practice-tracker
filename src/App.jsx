@@ -128,6 +128,12 @@ function App() {
     (problem) => problem.status === 'Not Started',
   ).length;
 
+
+  const solvedPercentage =
+  totalProblems === 0
+    ? 0
+    : Math.round((solvedProblems / totalProblems) * 100);
+
   const clearFilters = () => {
     setSearchTerm('');
     setPlatformFilter('');
@@ -167,6 +173,11 @@ function App() {
               <h3>Not Started</h3>
               <p>{notStartedProblems}</p>
             </div>
+
+            <div className="stat-card">
+  <h3>Solved Percentage</h3>
+  <p>{solvedPercentage}%</p>
+</div>
           </div>
         </section>
 
