@@ -254,12 +254,18 @@ function App() {
                 }
               />
 
-              <button
-                type="button"
-                onClick={clearFilters}
-              >
-                Clear Filters
-              </button>
+              {(searchTerm ||
+  platformFilter ||
+  difficultyFilter ||
+  statusFilter ||
+  topicFilter) && (
+    <button
+      type="button"
+      onClick={clearFilters}
+    >
+      Clear Filters
+    </button>
+)}
             </div>
 
             {problems.length === 0 ? (
