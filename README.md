@@ -45,7 +45,7 @@ This project was built to solve that problem by providing a simple personal codi
 ### 1. Clone the repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone GITHUB_REPOSITORY_URL
 ```
 
 ### 2. Open the project folder
